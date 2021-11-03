@@ -5,3 +5,5 @@
 <img src="https://i.imgur.com/snoR53v.jpg"/>
 <br/>
 <h3>Powered by:</h3>
+<br />
+<img src="https://i.imgur.com/mciMYhg.jpg"/>
