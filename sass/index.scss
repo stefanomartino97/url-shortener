@@ -1,0 +1,176 @@
+@import "./variables";
+@import "./globals";
+
+@mixin successOrError($success: true) {
+  font-family: $modal-font;
+  font-size: $modal-font-size;
+  padding: 10px 20px;
+  color: white;
+  border-radius: 5px;
+  @if ($success) {
+    background-color: $success-background-color;
+  } @else {
+    background-color: $error-background-color;
+  }
+}
+
+#container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  #header {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-top: 20px;
+
+    #logo {
+      width: 60px;
+      margin: 0px 5px;
+      transform: rotate(90deg);
+      border-radius: 10px;
+    }
+
+    h1 {
+      font-family: $header-font;
+      letter-spacing: 2px;
+      font-size: $header-font-size;
+      color: red;
+    }
+  }
+
+  #separator {
+    width: 100%;
+    height: 60px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  #error {
+    @include successOrError(false);
+  }
+
+  #success {
+    @include successOrError();
+  }
+
+  #input-form {
+    display: flex;
+    justify-content: center;
+
+    form {
+      display: flex;
+    }
+
+    #url {
+      width: 400px;
+      padding: 0px 5px;
+      font-family: $input-font;
+      font-size: $input-font-size;
+      margin: 0px 10px;
+      border-radius: 3px;
+      border: 1px solid rgba(255, 0, 0, 0.8);
+      outline: none;
+      transition: 0.7s;
+
+      &:hover {
+        background-color: rgba(255, 0, 0, 0.6);
+        color: white;
+
+        &::placeholder {
+          color: white;
+        }
+      }
+
+      &:focus {
+        background-color: rgba(255, 0, 0, 0.8);
+        color: white;
+
+        &::placeholder {
+          color: white;
+        }
+      }
+    }
+
+    input[type="submit"] {
+      font-family: $submit-font;
+      font-size: $submit-font-size;
+      transition: 0.4s;
+      background-color: transparent;
+      border-radius: 3px;
+      border: 1px solid rgba(255, 0, 0, 0.8);
+      padding: 10px 30px;
+      letter-spacing: 2px;
+      width: 200px;
+
+      &:hover {
+        cursor: pointer;
+        background-color: rgba(255, 0, 0, 0.8);
+        letter-spacing: 3px;
+        font-weight: bold;
+        color: white;
+      }
+    }
+  }
+
+  table {
+    margin-top: 60px;
+  }
+
+  table,
+  th,
+  td {
+    border: 1px solid white;
+    border-radius: 5px;
+    border-collapse: collapse;
+    font-family: sans-serif;
+    padding: 10px 20px;
+    text-align: center;
+    font-size: 20px;
+  }
+
+  td {
+    max-width: 300px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  tr {
+    transition: 0.1s;
+  }
+
+  tr:hover {
+    background-color: rgba(255, 0, 0, 0.5);
+  }
+  th {
+    color: white;
+    font-family: $header-font;
+    letter-spacing: 2px;
+    font-size: 28px;
+    background-color: red;
+  }
+
+  .empty-database {
+    margin-top: 20px;
+    font-family: sans-serif;
+    text-align: center;
+    color: grey;
+  }
+
+  @keyframes new-entry-fadeout {
+    from {
+      background-color: rgba(255, 0, 0, 0.8);
+    }
+    to {
+      background-color: transparent;
+    }
+  }
+  .new-entry {
+    animation-name: new-entry-fadeout;
+    animation-duration: 2s;
+  }
+}

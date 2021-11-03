@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>URL Shortener</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Gemunu+Libre&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="index.css">
+</head>
+<body>
+    <div id="container">
+
+    
+    <!--HEADER-->
+    <div id="header">
+        <img id="logo" src="logo.png" alt="">
+        <h1>URL Shortener</h1>
+    </div>
+    <div id="separator">
+        <!--Error Modal-->
+        <% if (error) { %>
+            <div id="error">
+                <%= error %>
+            </div>
+            <% } %>
+        
+        <!--Success Modal-->
+        <% if (success) { %>
+            <div id="success">
+                <%= success %>
+                </div>
+            <% } %>
+    </div>
+    
+
+    <!--Form-->
+    <div id="input-form">
+        <form action="/" method="POST">
+            <input type="text" name="url" id="url" autocomplete="off" placeholder="Enter the URL to shorten">
+            <input type="submit" value="Shorten">
+        </form>
+    </div>
+
+    <!--Table-->
+    <% if (urls.length) { %>
+        <table>
+            <tr>
+                <th>Long URL</th>
+                <th>Short URL</th>
+                <th>Visits</th>
+            </tr>
+            <% urls.forEach((element, i) => { %>
+             <tr class="<%= (success && (i == 0)) ? "new-entry" : "" %>">
+                 <td><a href="<%= element.long %>" target="_blank"><%= element.long %></a></td>
+                 <td><a href="<%= element.short %>" target="_blank"><%= element.short %></a></td>
+                 <td><%= element.visits %></td>
+             </tr>
+            <% }) %>
+        </table>
+    <% } else { %>
+        <h2 class="empty-database">No element in the database. <br/> Please add one using the form above.</h2>
+    <% } %>
+    </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="./script.js"></script>
+</body>
+
+</html>
